@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SST Result Portal</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f4f8;
+      margin: 0;
+      padding: 24px;
+    }
+    .card {
+      max-width: 400px;
+      margin: 50px auto;
+      padding: 24px;
+      background: white;
+      border-radius: 14px;
+      box-shadow: 0 4px 18px #0001;
+    }
+    h2 { text-align: center; color: #17365d; }
+    input, button {
+      box-sizing: border-box;
+      width: 100%;
+      padding: 12px;
+      margin: 9px 0;
+      border-radius: 7px;
+      border: 1px solid #bbb;
+    }
+    button {
+      background: #17365d;
+      color: white;
+      border: 0;
+      cursor: pointer;
+    }
+    #message { text-align: center; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>SST Result Portal</h2>
+    <p>Enter your candidate details.</p>
+
+    <form id="resultForm">
+      <input id="candidate" placeholder="Candidate Name"
+             required>
+      <input id="roll" placeholder="Enrollment / Roll Number"
+             required>
+      <button type="submit">Open Result PDF</button>
+    </form>
+
+    <p id="message" role="status"></p>
+  </div>
+
+  <script>
+    document.getElementById("resultForm")
+      .addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const name = document.getElementById("candidate")
+          .value.trim().toLowerCase();
+        const roll = document.getElementById("roll")
+          .value.trim();
+        const message = document.getElementById("message");
+
+        if (name === "chandan kumar" && roll === "264821") {
+          message.textContent = "Opening the result PDF...";
+          window.open("result.pdf", "_blank");
+        } else {
+          message.textContent =
+            "Details not found. Please check your entries.";
+        }
+      });
+  </script>
+</body>
+</html>
